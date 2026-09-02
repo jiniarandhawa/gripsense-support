@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GripSense Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1f7f5;
+    --surface: #ffffff;
+    --ink: #12302e;
+    --ink-soft: #4b6863;
+    --teal-600: #0f6e68;
+    --teal-700: #0b544f;
+    --teal-100: #dcede9;
+    --line: #d3e4e0;
+    --comfort: #3f9a49;
+    --weak: #e08a1e;
+    --excessive: #c9463d;
+    --focus: #0f6e68;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0e1a19;
+      --surface: #142523;
+      --ink: #e7f2f0;
+      --ink-soft: #a9c2be;
+      --teal-600: #4fc3b8;
+      --teal-700: #7fd6cc;
+      --teal-100: #1c3532;
+      --line: #24413d;
+      --comfort: #6bc472;
+      --weak: #f0a63e;
+      --excessive: #e5776e;
+      --focus: #4fc3b8;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #0e1a19;
+    --surface: #142523;
+    --ink: #e7f2f0;
+    --ink-soft: #a9c2be;
+    --teal-600: #4fc3b8;
+    --teal-700: #7fd6cc;
+    --teal-100: #1c3532;
+    --line: #24413d;
+    --comfort: #6bc472;
+    --weak: #f0a63e;
+    --excessive: #e5776e;
+    --focus: #4fc3b8;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--teal-600); text-decoration-thickness: 1.5px; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 3px; }
+
+  .wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem 5rem;
+  }
+
+  header.top {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .mark { flex: none; }
+  .mark svg { display: block; }
+
+  h1 {
+    font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 1.7rem;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .tagline {
+    margin: 0.9rem 0 0;
+    color: var(--ink-soft);
+    font-size: 1.06rem;
+    max-width: 34em;
+    text-wrap: balance;
+  }
+
+  .status-legend {
+    display: flex;
+    gap: 1.1rem;
+    margin: 1.6rem 0 0;
+    flex-wrap: wrap;
+  }
+  .status-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .dot.comfort { background: var(--comfort); }
+  .dot.weak { background: var(--weak); }
+  .dot.excessive { background: var(--excessive); }
+
+  section { margin-top: 3.2rem; }
+
+  h2 {
+    font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    color: var(--teal-700);
+    margin: 0 0 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .faq-item + .faq-item { margin-top: 1.6rem; }
+  .faq-item h3 {
+    font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 0.35rem;
+    color: var(--ink);
+  }
+  .faq-item p { margin: 0; color: var(--ink-soft); max-width: 60ch; }
+  .faq-item code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.85em;
+    background: var(--teal-100);
+    color: var(--teal-700);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+  }
+
+  .contact-panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1.6rem 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .contact-panel .label {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .contact-panel .email {
+    font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+  }
+  .contact-panel .note { color: var(--ink-soft); font-size: 0.95rem; margin-top: 0.3rem; }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 3rem 1.25rem 4rem; }
+    h1 { font-size: 1.45rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <span class="mark" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <rect width="40" height="40" rx="10" fill="var(--teal-600)"/>
+        <path d="M20 8c-1.7 0-3 1.3-3 3v3.6c-2 .9-3.4 2.9-3.4 5.2V27a3 3 0 0 0 3 3h6.8a3 3 0 0 0 3-3v-7.2c0-2.3-1.4-4.3-3.4-5.2V11c0-1.7-1.3-3-3-3Z" fill="var(--paper)"/>
+        <circle cx="17.6" cy="17.4" r="1" fill="var(--teal-600)"/>
+        <circle cx="20" cy="17.4" r="1" fill="var(--teal-600)"/>
+        <circle cx="22.4" cy="17.4" r="1" fill="var(--teal-600)"/>
+        <circle cx="17.6" cy="20" r="1" fill="var(--teal-600)"/>
+        <circle cx="20" cy="20" r="1" fill="var(--teal-600)"/>
+        <circle cx="22.4" cy="20" r="1" fill="var(--teal-600)"/>
+        <path d="M11 20c1-1.6 1-3.4 0-5M9 21c1.7-2.4 1.7-5.6 0-8" stroke="var(--paper)" stroke-width="1.4" stroke-linecap="round" opacity="0.9"/>
+        <path d="M29 20c-1-1.6-1-3.4 0-5M31 21c-1.7-2.4-1.7-5.6 0-8" stroke="var(--paper)" stroke-width="1.4" stroke-linecap="round" opacity="0.9"/>
+      </svg>
+    </span>
+    <h1>GripSense Support</h1>
+  </header>
+
+  <p class="tagline">GripSense is the companion app for the GripSense smart toothbrush, built for people with reduced hand strength or grip control. This page covers setup, common questions, and how to reach us.</p>
+
+  <div class="status-legend">
+    <span><span class="dot comfort"></span>Comfort</span>
+    <span><span class="dot weak"></span>Weak</span>
+    <span><span class="dot excessive"></span>Excessive</span>
+  </div>
+
+  <section>
+    <h2>Getting started</h2>
+    <div class="faq-item">
+      <h3>My toothbrush won't connect</h3>
+      <p>Make sure Bluetooth is turned on in your iPhone's Settings and that the toothbrush is powered on. In the app, tap <code>Scan</code> and keep the toothbrush within a few feet of your phone. If it still won't pair, turn the toothbrush off and on again, then try Scan once more.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What do Comfort, Weak, and Excessive mean?</h3>
+      <p>These are the three grip pressure zones GripSense reads from the toothbrush's sensors while you brush. Comfort is a steady, secure grip, Weak means the sensors are reading less pressure than is likely to hold the brush firmly, and Excessive means you're gripping harder than needed.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why does it say "Building Baseline"?</h3>
+      <p>GripSense learns what's normal for your grip over time. It needs 7 valid brushing sessions and 7 squeeze tests before it can show your personal baseline. Sessions under 20 seconds don't count toward this.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Your data</h2>
+    <div class="faq-item">
+      <h3>Is my data private?</h3>
+      <p>Yes. Your brushing and squeeze test data is stored locally on your device only. GripSense does not send it to any server.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I share my history with a doctor or therapist?</h3>
+      <p>Your session history includes a breakdown of time spent in each grip zone plus graphs of your grip strength over time, both from brushing sessions and squeeze tests. That's designed to be something you can bring along to an appointment.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contact us</h2>
+    <div class="contact-panel">
+      <span class="label">Email support</span>
+      <a class="email" href="mailto:jiniarandhawa10@icloud.com">jiniarandhawa10@icloud.com</a>
+      <p class="note">Describe what happened and, if you can, which screen you were on. We aim to reply within a few days.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>GripSense</span>
+    <span>iOS App · Bluetooth Low Energy</span>
+  </footer>
+
+</div>
+</body>
+</html>
